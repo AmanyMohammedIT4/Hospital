@@ -1,0 +1,97 @@
+﻿@using Hospital.Utilities
+@model PagedResult<Hospital.ViewModels.TimingViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               ID
+            </th>
+            <th>
+                ScheduleDate
+            </th>
+            <th>
+                MoringShiftStartTime
+            </th>
+            <th>
+                MoringShiftEndTime
+            </th>
+            <th>
+                AfternoonShiftEndTime
+            </th>
+            <th>
+                AfternoonShiftStartTime
+            </th>
+            <th>
+                Duration
+            </th>
+            <th>
+               Status
+            </th>
+            <th>
+               Doctor ID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Data) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoringShiftStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoringShiftEndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AfternoonShiftEndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AfternoonShiftStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Id)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.ID  }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<cs-pager cs-paging-pagesize=(int)Model.PageSize
+          cs-paging-pagenumber=(int)Model.PageNumber
+          cs-paging-totalitems=(int)Model.TotalItems
+          cs-pagenumber-param="PageNumber"
+          asp-controller="Doctor"
+
+          asp-action="Index"
+          cs-pager-li-current-class="page-item active"
+          cs-pager-li-other-class="page-item"
+          cs-pager-li-none-active-class="page-item disabled"
+          cs-pager-link-current-class="page-link"
+          cs-pager-link-other-class="page-link">
+      </cs-pager>

@@ -1,0 +1,118 @@
+﻿@*@model IEnumerable<Hospital.ViewModels.TimingViewModel>*@
+@using Hospital.Models
+@model Hospital.ViewModels.TimingViewModel
+@*
+@{
+    ViewData["Title"] = "AddTiming";
+}
+
+<h1>AddTiming</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoringShiftStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoringShiftEndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AfternoonShiftEndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AfternoonShiftStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoringShiftStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoringShiftEndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AfternoonShiftEndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AfternoonShiftStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+*@
+  <div class="row">
+    <div class="col-md-4">
+        <form asp-action="addtiming">
+             <h2>Timing Doctor.</h2>
+            <hr />
+        <div class="form-group">
+            <label asp-for="Status" class="control-label"></label>
+            <input asp-for="Status" class="form-control"/>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Duration" class="control-label"></label>
+            <input asp-for="Duration" class="form-control"/>
+            <span asp-validation-for="Duration" class="text-danger"></span>
+        </div>
+        <hr />
+        <div>
+            <label asp-for="MoringShiftStartTime"></label>
+            <select asp-for="MoringShiftStartTime" asp-items="@ViewBag.moringStart"></select>
+        </div>
+        <div>
+            <label asp-for="MoringShiftEndTime"></label>
+            <select asp-for="MoringShiftEndTime" asp-items="@ViewBag.moringEnd"></select>
+        </div>
+         <div>
+            <label asp-for="AfternoonShiftStartTime"></label>
+            <select asp-for="AfternoonShiftStartTime" asp-items="@ViewBag.evenStart"></select>
+        </div>
+        <div>
+            <label asp-for="AfternoonShiftEndTime"></label>
+            <select asp-for="AfternoonShiftEndTime" asp-items="@ViewBag.evenEnd"></select>
+        </div>
+
+        <input type="submit" value="submit"/>
+       
+    </form>
+ </div>
+ </div>
